@@ -1,23 +1,21 @@
 """Helper module for a simple speckle object tree flattening."""
 
 from collections.abc import Iterable
+from typing import Any
 
-from specklepy.objects import Base
 
-
-def flatten_base(base: Base) -> Iterable[Base]:
-    """Flatten a base object into an iterable of bases.
+def flatten_base(base: Any) -> Iterable[Any]:
+    """Flatten a base object into an iterable of nested objects.
 
     This function recursively traverses the `elements` or `@elements` attribute of the
-    base object, yielding each nested base object.
+    base object, yielding each nested object in the hierarchy.
 
     Args:
-        base (Base): The base object to flatten.
+        base (Any): The base object to flatten.
 
     Yields:
-        Base: Each nested base object in the hierarchy.
+        Any: Each nested object in the hierarchy.
     """
-    # Attempt to get the elements attribute, fallback to @elements if necessary
     elements = getattr(base, "elements", getattr(base, "@elements", None))
 
     if elements is not None:

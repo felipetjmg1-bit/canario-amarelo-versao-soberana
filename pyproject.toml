@@ -11,10 +11,13 @@ keywords = ["speckle", "automate", "bim", "aec"]
 
 dependencies = [
     "specklepy>=3.2.4",
-    "speckle-automate>=0.1.0",
     "openai>=1.0.0",
     "pydantic>=2.0.0"
 ]
+
+[build-system]
+requires = ["setuptools>=65.0", "wheel"]
+build-backend = "setuptools.build_meta"
 
 [project.optional-dependencies]
 dev = [
@@ -39,4 +42,5 @@ select = [
 convention = "google"
 
 [tool.setuptools]
-py-modules = []
+py-modules = ["main", "flatten"]
+packages = ["speckle_automate"]

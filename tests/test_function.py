@@ -23,8 +23,8 @@ def test_function_run(
         automation_context,
         automate_function,
         FunctionInputs(
-            forbidden_speckle_type="None",
-            whisper_message=SecretStr("testing automatically"),
+            openai_api_key=SecretStr(""),
+            analysis_prompt="Teste de auditoria de modelo BIM.",
         ),
     )
 

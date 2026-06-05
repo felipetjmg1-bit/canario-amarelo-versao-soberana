@@ -1,8 +1,8 @@
 {
-  "speckleToken": "YOUR SPEKCLE TOKEN",
+  "speckleToken": "YOUR SPECKLE TOKEN",
   "functionInputs": {
-    "whisperMessage": "you are doing something weird",
-    "forbiddenSpeckleType": "wall"
+    "openai_api_key": "YOUR_OPENAI_API_KEY",
+    "analysis_prompt": "Realize uma auditoria técnica rigorosa. Verifique se há duplicidade de IDs, inconsistências de materiais e se a hierarquia espacial faz sentido para um modelo de construção."
   },
   "automationRunData": {
     "project_id": "project id",

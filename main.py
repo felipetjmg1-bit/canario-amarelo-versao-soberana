@@ -10,7 +10,6 @@ from speckle_automate import (
     AutomationContext,
     execute_automate_function,
 )
-from openai import OpenAI
 from flatten import flatten_base
 
 class FunctionInputs(AutomateBase):
@@ -59,8 +58,22 @@ def automate_function(
         data_summary += "\nInconsistências detectadas por regras locais:\n"
         data_summary += "\n".join(missing_params[:10])
 
-    # 3. Chamar a API da OpenAI (Aurora)
+    if not function_inputs.openai_api_key or not function_inputs.openai_api_key.get_secret_value().strip():
+        analysis_result = (
+            "Nenhuma chave de API OpenAI foi fornecida. "
+            "O relatório local foi gerado com base nos dados disponíveis."
+        )
+        automate_context.mark_run_success(
+            "Análise Aurora concluída (modo local, sem OpenAI)."
+        )
+        with open("relatorio_aurora.md", "w") as f:
+            f.write(f"# Relatório de Análise Aurora AI\n\n{analysis_result}")
+        automate_context.store_file_result("relatorio_aurora.md")
+        return
+
     try:
+        from openai import OpenAI
+
         client = OpenAI(api_key=function_inputs.openai_api_key.get_secret_value())
         response = client.chat.completions.create(
             model="gpt-4o-mini", # Usando um modelo eficiente
@@ -69,18 +82,32 @@ def automate_function(
                 {"role": "user", "content": f"{function_inputs.analysis_prompt}\n\nDados do Modelo:\n{data_summary}"}
             ]
         )
-        
-        analysis_result = response.choices[0].message.content
-        
-        # 4. Anexar resultado ao Speckle
+
+        choice = response.choices[0]
+        message = getattr(choice, "message", None)
+        if message is None:
+            raise ValueError("Resposta inválida da OpenAI: campo 'message' ausente.")
+
+        analysis_result = (
+            message.content
+            if hasattr(message, "content")
+            else message.get("content", "")
+        )
+
+        if not analysis_result:
+            raise ValueError("Resposta da OpenAI não contém conteúdo de análise.")
+
         automate_context.mark_run_success(f"Análise Aurora concluída: {analysis_result[:200]}...")
-        
-        # Salvar relatório completo como arquivo de resultado
+
         with open("relatorio_aurora.md", "w") as f:
             f.write(f"# Relatório de Análise Aurora AI\n\n{analysis_result}")
-        
+
         automate_context.store_file_result("relatorio_aurora.md")
 
+    except ImportError as e:
+        automate_context.mark_run_failed(
+            f"Biblioteca OpenAI não está instalada: {str(e)}"
+        )
     except Exception as e:
         automate_context.mark_run_failed(f"Falha na integração com Aurora AI: {str(e)}")
 
