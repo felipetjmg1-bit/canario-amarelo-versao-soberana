@@ -43,4 +43,4 @@ convention = "google"
 
 [tool.setuptools]
 py-modules = ["main", "flatten"]
-packages = ["speckle_automate"]
+packages = ["speckle_automate_stub"]
