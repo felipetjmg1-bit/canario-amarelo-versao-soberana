@@ -32,4 +32,10 @@ python -m pytest -q
 python main.py
 ```
 
-> Para integração real com OpenAI, defina a variável de ambiente `OPENAI_API_KEY` antes de executar `main.py`.
+### 5. Conversar e criar mídia com Canário Amarelo
+```bash
+export OPENAI_API_KEY="sua_chave_openai"
+python canario.py
+```
+
+> O assistente multimodal permite conversar, criar imagens, gerar vídeos e ajustar o estilo de resposta.
