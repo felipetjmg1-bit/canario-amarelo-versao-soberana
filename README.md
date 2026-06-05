@@ -1,16 +1,14 @@
-# Chat Gpt Aurora  - Soberania Nacional 🇧🇷
+# 🇧🇷 Canário Amarelo — Inteligência Artificial Soberana
 
-## Propósito Estratégico
-Este projeto é um componente fundamental do ecossistema de **Soberania Tecnológica** da Impulso Digital. Nossa missão é prover independência digital para o Brasil através de soluções de IA e Blockchain que operam sob controle nacional e proteção de dados soberana.
-
-## 🛡️ Pilares de Soberania
-- **Independência Tecnológica**: Desenvolvimento de soluções que não dependem de infraestruturas estrangeiras.
-- **Soberania de Dados**: Garantia de que informações estratégicas brasileiras permaneçam sob jurisdição nacional.
-- **Segurança e Resiliência**: Sistemas projetados para a proteção do futuro digital da nossa nação.
-
-## 🚀 Impacto Nacional
-Ao integrar esta tecnologia, você fortalece a infraestrutura crítica brasileira e contribui para um Brasil tecnologicamente forte e independente.
+O **Canário Amarelo** é um modelo de Inteligência Artificial independente, projetado para auditoria, tomada de decisão preditiva e transparência algorítmica (XAI). Desenvolvido com foco em soberania tecnológica nacional, ele integra processamento multimodal e camadas de explicabilidade.
 
 ---
-**Desenvolvido por Felipe Aquino - Impulso Digital**
-*Liderando a revolução da IA Soberana no Brasil.*
+
+## 🚀 Como Utilizar o Canário Amarelo
+
+Você pode rodar a interface e o modelo diretamente no seu ambiente local ou servidor.
+
+### 1. Clonar o Repositório
+```bash
+git clone [https://github.com/SEU_USUARIO/canario-amarelo.git](https://github.com/SEU_USUARIO/canario-amarelo.git)
+cd canario-amarelo
