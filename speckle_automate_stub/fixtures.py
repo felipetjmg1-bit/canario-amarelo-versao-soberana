@@ -1,6 +1,6 @@
 import pytest
 
-from speckle_automate import AutomationRunData
+from speckle_automate_stub import AutomationRunData
 
 
 @pytest.fixture

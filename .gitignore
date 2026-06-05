@@ -78,6 +78,16 @@ atlassian-ide-plugin.xml
 # Crashlytics plugin (for Android Studio and IntelliJ)
 com_crashlytics_export_strings.xml
 crashlytics.properties
+
+# Local Python environment
+.venv/
+
+# Generated media output
+outputs/
+
+# Python cache files
+__pycache__/
+*.pyc
 crashlytics-build.properties
 fabric.properties
 

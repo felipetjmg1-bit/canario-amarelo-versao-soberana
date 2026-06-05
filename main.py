@@ -5,12 +5,20 @@ Integrando IA (Aurora) para análise inteligente de dados BIM no Speckle.
 
 import os
 from pydantic import Field, SecretStr
-from speckle_automate import (
-    AutomateBase,
-    AutomationContext,
-    execute_automate_function,
-)
 from flatten import flatten_base
+
+try:
+    from speckle_automate import (
+        AutomateBase,
+        AutomationContext,
+        execute_automate_function,
+    )
+except ImportError:
+    from speckle_automate_stub import (
+        AutomateBase,
+        AutomationContext,
+        execute_automate_function,
+    )
 
 class FunctionInputs(AutomateBase):
     """Parâmetros de entrada para a função Aurora AI."""
