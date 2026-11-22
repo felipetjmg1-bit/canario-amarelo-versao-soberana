@@ -1,4 +1,4 @@
-![Status: Experimental](https://img.shields.io/badge/Status-Em%20desenvolvimento-blue) | [![Licença Apache-2.0](https://img.shields.io/github/license/felipetjmg1-bit/canario-amarelo-versao-soberana)](LICENSE) | [![Patrocinar](https://img.shields.io/badge/Sponsor-GitHub%20Sponsors-ea4aaa?logo=githubsponsors)](https://github.com/sponsors/felipetjmg1-bit)
+![Status: Automação BIM em desenvolvimento](https://img.shields.io/badge/Status-Em%20desenvolvimento-blue) | [![Licença Apache-2.0](https://img.shields.io/github/license/felipetjmg1-bit/canario-amarelo-versao-soberana)](LICENSE) | [![Patrocinar](https://img.shields.io/badge/Sponsor-GitHub%20Sponsors-ea4aaa?logo=githubsponsors)](https://github.com/sponsors/felipetjmg1-bit)
 
 # Canário Amarelo — Automação Speckle para BIM
 
@@ -57,7 +57,7 @@ Exemplo possível a partir da interface real separada: com dependências instala
 
 ## Estado e limitações
 
-**Maturidade indicada:** Experimental.
+**Estado de entrega:** automação BIM em desenvolvimento.
 
 - Não tratar as alegações de 'IA soberana', XAI, auditoria de duplicidade ou recursos multimodais do README como capacidades comprovadas da função principal.
 - O núcleo main.py envia resumo do modelo BIM e prompt à OpenAI quando recebe chave; portanto, a designação 'soberana' não comprova operação independente ou local.
