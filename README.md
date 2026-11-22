@@ -2,6 +2,12 @@
 
 # Canário Amarelo — Automação Speckle para BIM
 
+
+<p align="center">
+  <img src="PROJECT-OVERVIEW.svg" alt="Diagrama de funcionalidades de Canário Amarelo · Automate" width="100%">
+</p>
+
+
 ## Visão geral
 
 Pelo código, o núcleo do repositório é uma função Python para Speckle Automate que recebe um objeto BIM, percorre a hierarquia, resume tipos de objetos e verifica localmente a ausência do atributo material em objetos cujo tipo contém 'Structure'. Com uma chave OpenAI, envia resumo e prompt a gpt-4o-mini e grava relatório_aurora.md; sem chave, grava um relatório de modo local. Há também scripts de chat e mídia em canario.py, separados desse fluxo central. A descrição aspiracional do README (IA soberana, explicável, multimodal) não é inteiramente sustentada pelo núcleo implementado.
@@ -71,3 +77,8 @@ Este repositório está licenciado sob **Apache-2.0**; consulte [LICENSE](LICENS
 O desenvolvimento aberto exige tempo para manutenção, documentação, testes, revisão de contribuições e resposta a issues. Se este projeto for útil, considere apoiar a continuidade pelo [GitHub Sponsors](https://github.com/sponsors/felipetjmg1-bit). O apoio não representa promessa de funcionalidades, prazo de entrega ou suporte comercial.
 
 [![Patrocinar felipetjmg1-bit](https://img.shields.io/badge/Patrocinar%20no-GitHub%20Sponsors-ea4aaa?logo=githubsponsors)](https://github.com/sponsors/felipetjmg1-bit)
+
+
+---
+
+**Empresa responsável:** Impulso Digital Soluções em IA.
