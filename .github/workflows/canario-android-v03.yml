@@ -1,0 +1,58 @@
+name: CANARIO AMARELO Android V0.3 - Build APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ android-v0.3-build ]
+    paths:
+      - 'CANARIO_AMARELO_Android_V0.3.zip'
+      - '.github/workflows/canario-android-v03.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Gradle 8.9
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+
+      - name: Verify project ZIP
+        run: |
+          test -f CANARIO_AMARELO_Android_V0.3.zip
+          unzip -t CANARIO_AMARELO_Android_V0.3.zip
+
+      - name: Extract Android project
+        run: unzip -q CANARIO_AMARELO_Android_V0.3.zip -d workspace
+
+      - name: Run Neural Core smoke tests
+        working-directory: workspace/canario-v03
+        run: node tests/test-neural-core.cjs
+
+      - name: Validate Android project policy
+        working-directory: workspace/canario-v03
+        run: python3 tests/validate-project.py
+
+      - name: Build debug APK
+        working-directory: workspace/canario-v03
+        run: gradle --no-daemon assembleDebug
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: canario-amarelo-v0.3-debug-apk
+          path: workspace/canario-v03/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+          retention-days: 14
