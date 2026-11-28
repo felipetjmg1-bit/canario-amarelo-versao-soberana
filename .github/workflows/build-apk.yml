@@ -1,0 +1,54 @@
+name: Build Canario VPN APK
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'android/canario-vpn/**'
+      - '.github/workflows/build-apk.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: android/canario-vpn
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+      - name: Install Android platform
+        run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
+      - name: Install Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+      - name: Build debug APK
+        run: gradle assembleDebug --no-daemon
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: canario-vpn-debug
+          path: android/canario-vpn/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+          retention-days: 30
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          TAG="canario-vpn-build-${GITHUB_RUN_NUMBER}"
+          gh release create "$TAG" "android/canario-vpn/app/build/outputs/apk/debug/app-debug.apk#Canario-VPN-debug.apk" \
+            --title "Canário VPN build ${GITHUB_RUN_NUMBER}" \
+            --notes "Build automática de teste. APK debug, sem gateway VPN de produção." \
+            --target "${GITHUB_SHA}"
