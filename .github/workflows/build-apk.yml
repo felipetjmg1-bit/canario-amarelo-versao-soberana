@@ -50,7 +50,7 @@ jobs:
           GH_REPO: ${{ github.repository }}
         run: |
           TAG="canario-vpn-build-${GITHUB_RUN_NUMBER}"
-          gh release create "$TAG" "android/canario-vpn/app/build/outputs/apk/debug/app-debug.apk#Canario-VPN-debug.apk" \
+          gh release create "$TAG" "app/build/outputs/apk/debug/app-debug.apk#Canario-VPN-debug.apk" \
             --title "Canário VPN build ${GITHUB_RUN_NUMBER}" \
             --notes "Build automática de teste. APK debug, sem gateway VPN de produção." \
             --target "${GITHUB_SHA}"
